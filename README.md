@@ -1,1 +1,2 @@
-# hackerrank-problems
+# HackerRank problems
+Self-studying for coding test.
