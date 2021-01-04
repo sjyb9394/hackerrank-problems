@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    
+    int num;
+    cin>>num;
+    set<int> s; //initialize set
+    
+    for(int i = 0; i<num ; i++){
+        int type, val;
+        cin>>type>>val;
+        
+        switch(type){
+            case 1:
+                s.insert(val);  //how to insert
+                break;
+            case 2:
+                s.erase(val);   //how to delete
+                break;
+            case 3:
+                set<int>::iterator itr=s.find(val);     //use iterator to iterate the sets to find element
+                cout<< (itr == s.end() ? "No" : "Yes") <<endl;  //if iterator reached the end of the set, it means there are no such element exist in the set
+                break;
+        }
+    }
+    
+    return 0;
+}
+
+
+
