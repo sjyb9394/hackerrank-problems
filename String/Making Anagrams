@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the makeAnagram function below.
+// Code
+int makeAnagram(string a, string b) {
+    vector<int> freq1(26,0);
+    vector<int> freq2(26,0);
+    int count = 0;
+    
+    for(char element:a){
+        freq1[element-'a']++;
+    }
+    for(char element:b){
+        freq2[element-'a']++;
+    }
+
+    for(int i = 0; i<26;i++){
+        if(freq1[i] > 0 && freq2[i] > 0){
+            count+=min(freq1[i],freq2[i]);
+        }
+    }
+    
+    return (a.size()-count)+(b.size()-count);
+}
+
+//Given
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string a;
+    getline(cin, a);
+
+    string b;
+    getline(cin, b);
+
+    int res = makeAnagram(a, b);
+
+    fout << res << "\n";
+
+    fout.close();
+
+    return 0;
+}
