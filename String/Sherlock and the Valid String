@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Complete the isValid function below.
+string isValid(string s) {
+    vector<int> freq(26,0);
+    vector<int>::iterator it;
+    for(char element:s){  //count Frequency
+        freq[element-'a']++;
+    }
+    
+    sort(freq.begin(),freq.end());  //Sort
+    it = upper_bound(freq.begin(),freq.end(),0);  //Find the first non-zero element
+    int check = freq[it-freq.begin()];
+    int diff = 1;
+    int count1 = 0; //count the first frequency
+    int count2 = 0; //count the second frequency
+    
+    for(int i = it - freq.begin();i<freq.size();i++){
+         if(freq[i]!=check) {   
+             diff++;
+             if(diff>2) return "NO"; // if there are more than 2 different frequencies
+             if(count1>1 && freq[i] - check >1) return "NO"; //if difference of first and second frequency is more than 1
+             check = freq[i];   
+         }
+         
+         if(freq[i]==check && diff==1){ //count first frequency
+             count1++;
+         }else if(freq[i]==check && diff==2){ //count second frequency
+             count2++;
+         }
+         
+         if(count1 > 1 && count2 > 1) return "NO";  //if both first and second frequencies occur more than 1 time
+    }
+    
+    return "YES";
+}
+
+//Given
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = isValid(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
