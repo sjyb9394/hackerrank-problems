@@ -5,6 +5,7 @@ using namespace std;
 vector<string> split_string(string);
 
 // Complete the maxSubsetSum function below.
+// Code
 int maxSubsetSum(vector<int> arr) {
     vector<int> a(arr.size(),0);
     int maxnum = 0;
@@ -22,6 +23,7 @@ int maxSubsetSum(vector<int> arr) {
     return maxnum;
 }
 
+//Given
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
