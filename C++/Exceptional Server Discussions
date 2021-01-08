@@ -35,6 +35,7 @@ int main() {
 		cin >> A >> B;
 
 		/* Enter your code here. */
+		//Code
         try{
             cout<<Server::compute(A,B)<<endl;
         }catch(bad_alloc& error){
