@@ -1,0 +1,77 @@
+#include <iostream>
+#include <exception>
+#include <string>
+#include <stdexcept>
+#include <vector>
+#include <cmath>
+using namespace std;
+
+class Server {
+private:
+	static int load;
+public:
+	static int compute(long long A, long long B) {
+		load += 1;
+		if(A < 0) {
+			throw std::invalid_argument("A is negative");
+		}
+		vector<int> v(A, 0);
+		int real = -1, cmplx = sqrt(-1);
+		if(B == 0) throw 0;
+		real = (A/B)*real;
+		int ans = v.at(B);
+		return real + A - B*ans;
+	}
+	static int getLoad() {
+		return load;
+	}
+};
+int Server::load = 0;
+
+int main() {
+	int T; cin >> T;
+	while(T--) {
+		long long A, B;
+		cin >> A >> B;
+
+		/* Enter your code here. */
+        try{
+            cout<<Server::compute(A,B)<<endl;
+        }catch(bad_alloc& error){
+            cout<<"Not enough memory"<<endl;
+        }catch(exception& exc){
+            cout<<"Exception: "<<exc.what()<<endl;
+        }catch(...){
+            cout<<"Other Exception"<<endl;
+        }
+	}
+	cout << Server::getLoad() << endl;
+	return 0;
+}
+
+
+
+EXCEPTION
+try {
+	//code that may result in exceptions being thrown
+}
+catch (type of exception to be caught) { 
+	//action to take when this exception is caught
+}
+catch (alternative type of exception to be caught) {
+	//action to take when this alternative exception is caught
+}
+
+The first catch will be triggered whenever a "bad_alloc" exception occurs. 
+Scenario 1 is actually a standard C++ exception, but we need to give it special 
+treatment with a unique message for the challenge. This is why we put this catch 
+first and the catch for all standard C++ exceptions second, because otherwise the 
+"bad_alloc" exception would be treated the same as the others.
+
+The second scenario will trigger when any other exceptions in the C++ exception library occur 
+(again, find a list of these exceptions here). All other exceptions will print some standard code that 
+gives some clue as to what caused the exception.
+
+The final catch uses an ellipses (...) as the catch condition. This means that this catch will 
+be triggered by any other exceptions not caught by the previous catches,
+which is not a standard C++ exception.
