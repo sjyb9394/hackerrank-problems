@@ -1,0 +1,15 @@
+d = []
+s = set()
+
+for _ in range(int(raw_input())):
+    name = raw_input()
+    score = float(raw_input())
+    d.append([name, score])
+    s.add(score)
+    
+second = sorted(s)[1]
+d.sort()
+
+for i in range(0, len(d)):
+    if(d[i][1] == second):
+        print(d[i][0])
