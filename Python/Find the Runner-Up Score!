@@ -1,0 +1,14 @@
+if __name__ == '__main__':
+    n = int(raw_input())
+    arr = map(int, raw_input().split())
+    
+    arr.sort()
+    arr.reverse()
+    temp = arr[0]
+    
+    for i in range(0, len(arr)):
+        if(temp != arr[i]): 
+            temp = arr[i]
+            break
+    
+    print(temp)
